@@ -26,3 +26,11 @@ export async function getStaticProps(context) {
         notFound: true,
       }
     }
+
+    const IndexPage = (props) => (
+        <ul>
+          {props.posts.map(post => (
+            <li key={post.id}>{post.title}</li>
+          ))}
+        </ul>
+      );
