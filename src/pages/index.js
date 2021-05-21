@@ -1,5 +1,6 @@
 import React from 'react';
 import { sourcebitDataClient } from 'sourcebit-target-next';
+import { getPosts } from '../lib/posts';
 
 /**
  * In next.js we can't use `src/pages/[...slug].js` for root site page `/`.
@@ -16,3 +17,12 @@ export async function getStaticProps({ params }) {
 }
 
 export default Page;
+
+export async function getStaticProps(context) {
+    const posts = await getPosts()
+  
+    if (!posts) {
+      return {
+        notFound: true,
+      }
+    }
