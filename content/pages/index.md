@@ -45,11 +45,3 @@ seo:
       relativeUrl: true
 layout: home
 ---
-
-const IndexPage = (props) => (
-  <ul>
-    {props.posts.map(post => (
-      <li key={post.id}>{post.title}</li>
-    ))}
-  </ul>
-);
