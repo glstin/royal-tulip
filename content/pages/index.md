@@ -1,4 +1,4 @@
----
+<!-- ---
 title: Home
 has_intro: true
 intro_content: >
@@ -44,4 +44,12 @@ seo:
       value: images/ampersand-preview.png
       relativeUrl: true
 layout: home
----
+--- -->
+
+const IndexPage = (props) => (
+  <ul>
+    {props.posts.map(post => (
+      <li key={post.id}>{post.title}</li>
+    ))}
+  </ul>
+);

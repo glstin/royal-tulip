@@ -1,7 +1,7 @@
 import GhostContentAPI from "@tryghost/content-api";
 
 import GhostContentAPI from "@tryghost/content-api";
-
+import { getPosts } from '../lib/posts';
 // Create API instance with site credentials
 const api = new GhostContentAPI({
   url: 'https://krvbsblog.herokuapp.com/',
@@ -19,3 +19,26 @@ export async function getPosts() {
       });
   }
 
+  export async function getStaticProps(context) {
+    const posts = await getPosts()
+  
+    if (!posts) {
+      return {
+        notFound: true,
+      }
+    }
+  
+    return {
+      props: { posts }
+    }
+  }
+
+  export async function getSinglePost(postSlug) {
+    return await api.posts
+      .read({
+        slug: postSlug
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
